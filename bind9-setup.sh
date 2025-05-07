@@ -5,15 +5,15 @@
 set -euo pipefail
 
 # ========= CONFIGURABLE SECTION =========
-DNS_DOMAIN="testcluster.local"  # Your cluster base domain e.g. ite.local
-CLUSTER_NAME="kuanyong-ocp"                 # Your cluster name e.g. my-ocp
-DNS_FORWARDERS=("48.64.208.22" "8.8.8.8" "8.8.4.4") # List of DNS forwarders, separated by space
-DNS_SERVER_HOSTNAME="kuanyong-test-dns"         # Your DNS server hostname
-JUMPHOST_IP="48.64.210.22"                    # IP of your DNS server (i.e jumphost)
-API_VIP="48.64.210.23"                        # API VIP
-APPS_VIP="48.64.210.24"                       # APPS VIP
-NETWORK_CIDR="48.64.210.0/25"                 # Main subnet
-REVERSE_ZONE="210.64.48.in-addr.arpa"          # Reverse zone name (i.e reverse the first 3 octets of your jumphost's IP address and append .in-addr.arpa)
+DNS_DOMAIN="ite.local"  # Your cluster base domain e.g. ite.local
+CLUSTER_NAME="ite-ocp"                 # Your cluster name e.g. my-ocp
+DNS_FORWARDERS=("8.8.8.8" "8.8.4.4") # List of DNS forwarders, separated by space
+DNS_SERVER_HOSTNAME="debian01"         # Your DNS server hostname
+JUMPHOST_IP="10.10.15.112"                    # IP of your DNS server (i.e jumphost)
+API_VIP="10.10.15.122"                        # API VIP
+APPS_VIP="10.10.15.123"                       # APPS VIP
+NETWORK_CIDR="10.10.15.0/24"                 # Main subnet
+REVERSE_ZONE="15.10.10.in-addr.arpa"          # Reverse zone name (i.e reverse the first 3 octets of your jumphost's IP address and append .in-addr.arpa)
 # =========================================
 
 # ========= LOGGING SETUP =========
