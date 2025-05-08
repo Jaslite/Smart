@@ -1,0 +1,50 @@
+WARNING failed to parse first occurrence of unknown field: failed to unmarshal install-config.yaml: error unmarshaling JSON: while decoding JSON: json: unknown field "cpus" 
+INFO Attempting to unmarshal while ignoring unknown keys because strict unmarshaling failed 
+INFO Consuming Install Config from target directory 
+INFO Adding clusters...                           
+I0508 12:29:15.904056   16512 session.go:227] "Created and cached vSphere client session" server="vcsa01.seit.local" datacenter="" username="administrator@vsphere.local"
+WARNING FeatureSet "TechPreviewNoUpgrade" is enabled. This FeatureSet does not allow upgrades and may affect the supportability of the cluster. 
+INFO Creating infrastructure resources...         
+INFO Importing OVA ite-ocp-kg74h-rhcos-generated-region-generated-zone into failure domain generated-failure-domain. 
+INFO Started local control plane with envtest     
+INFO Stored kubeconfig for envtest in: /home/isngpu01@seit.local/trusted-root-ca/openshift-cluster/.clusterapi_output/envtest.kubeconfig 
+INFO Running process: Cluster API with args [-v=2 --diagnostics-address=0 --health-addr=127.0.0.1:37305 --webhook-port=34629 --webhook-cert-dir=/tmp/envtest-serving-certs-1091199060 --kubeconfig=/home/isngpu01@seit.local/trusted-root-ca/openshift-cluster/.clusterapi_output/envtest.kubeconfig] 
+INFO Running process: vsphere infrastructure provider with args [-v=2 --diagnostics-address=0 --health-addr=127.0.0.1:33897 --webhook-port=45133 --webhook-cert-dir=/tmp/envtest-serving-certs-510429333 --leader-elect=false --kubeconfig=/home/isngpu01@seit.local/trusted-root-ca/openshift-cluster/.clusterapi_output/envtest.kubeconfig] 
+INFO Creating infra manifests...                  
+INFO Created manifest *v1.Namespace, namespace= name=openshift-cluster-api-guests 
+INFO Created manifest *v1beta1.Cluster, namespace=openshift-cluster-api-guests name=ite-ocp-kg74h-0 
+INFO Created manifest *v1beta1.VSphereCluster, namespace=openshift-cluster-api-guests name=ite-ocp-kg74h-0 
+INFO Created manifest *v1.Secret, namespace=openshift-cluster-api-guests name=vsphere-creds-0 
+INFO Done creating infra manifests                
+INFO Creating kubeconfig entry for capi cluster ite-ocp-kg74h-0 
+INFO Waiting up to 15m0s (until 12:45PM +08) for network infrastructure to become ready... 
+INFO Network infrastructure is ready              
+INFO Created manifest *v1beta1.VSphereMachine, namespace=openshift-cluster-api-guests name=ite-ocp-kg74h-bootstrap 
+INFO Created manifest *v1beta1.VSphereMachine, namespace=openshift-cluster-api-guests name=ite-ocp-kg74h-master-0 
+INFO Created manifest *v1beta1.VSphereMachine, namespace=openshift-cluster-api-guests name=ite-ocp-kg74h-master-1 
+INFO Created manifest *v1beta1.VSphereMachine, namespace=openshift-cluster-api-guests name=ite-ocp-kg74h-master-2 
+INFO Created manifest *v1beta1.Machine, namespace=openshift-cluster-api-guests name=ite-ocp-kg74h-bootstrap 
+INFO Created manifest *v1beta1.Machine, namespace=openshift-cluster-api-guests name=ite-ocp-kg74h-master-0 
+INFO Created manifest *v1beta1.Machine, namespace=openshift-cluster-api-guests name=ite-ocp-kg74h-master-1 
+INFO Created manifest *v1beta1.Machine, namespace=openshift-cluster-api-guests name=ite-ocp-kg74h-master-2 
+INFO Created manifest *v1.Secret, namespace=openshift-cluster-api-guests name=ite-ocp-kg74h-bootstrap 
+INFO Created manifest *v1.Secret, namespace=openshift-cluster-api-guests name=ite-ocp-kg74h-master 
+INFO Waiting up to 15m0s (until 12:45PM +08) for machines [ite-ocp-kg74h-bootstrap ite-ocp-kg74h-master-0 ite-ocp-kg74h-master-1 ite-ocp-kg74h-master-2] to provision... 
+INFO Control-plane machines are ready             
+INFO Cluster API resources have been created. Waiting for cluster to become ready... 
+INFO Waiting up to 20m0s (until 12:57PM +08) for the Kubernetes API at https://api.ite-ocp.ite.local:6443... 
+ERROR Attempted to gather ClusterOperator status after installation failure: listing ClusterOperator objects: Get "https://api.ite-ocp.ite.local:6443/apis/config.openshift.io/v1/clusteroperators": dial tcp: lookup api.ite-ocp.ite.local on 8.8.8.8:53: no such host 
+ERROR Bootstrap failed to complete: Get "https://api.ite-ocp.ite.local:6443/version": dial tcp: lookup api.ite-ocp.ite.local on 8.8.8.8:53: no such host 
+ERROR Failed waiting for Kubernetes API. This error usually happens when there is a problem on the bootstrap host that prevents creating a temporary control plane. 
+INFO Pulling Cluster API artifacts                
+INFO Skipping VM console logs gather: no gather methods registered for "vsphere" 
+INFO Pulling debug logs from the bootstrap machine 
+INFO Failed to gather bootstrap logs: failed to create SSH client: failed to use pre-existing agent, make sure the appropriate keys exist in the agent for authentication: ssh: handshake failed: ssh: unable to authenticate, attempted methods [none publickey], no supported methods remain 
+ERROR Invalid log bundle or the bootstrap machine could not be reached and bootstrap logs were not collected 
+INFO Bootstrap gather logs captured here "/home/isngpu01@seit.local/trusted-root-ca/openshift-cluster/log-bundle-20250508125708.tar.gz" 
+INFO Shutting down local Cluster API controllers... 
+INFO Stopped controller: Cluster API              
+WARNING process cluster-api-provider-vsphere exited with error: signal: killed 
+INFO Stopped controller: vsphere infrastructure provider 
+INFO Shutting down local Cluster API control plane... 
+INFO Local Cluster API system has completed operations 
