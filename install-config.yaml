@@ -1,0 +1,100 @@
+featureSet: TechPreviewNoUpgrade
+additionalTrustBundlePolicy: Proxyonly
+apiVersion: v1
+baseDomain: testcluster.local
+compute:
+- architecture: amd64
+  hyperthreading: Enabled
+  name: worker
+  platform: {}
+  replicas: 2
+controlPlane:
+  architecture: amd64
+  hyperthreading: Enabled
+  name: master
+  platform: {}
+  replicas: 3
+metadata:
+  creationTimestamp: null
+  name: kuanyong-ocp
+networking:
+  clusterNetwork:
+  - cidr: 10.128.0.0/14
+    hostPrefix: 23
+  machineNetwork:
+  - cidr: 48.64.210.0/25
+  networkType: OVNKubernetes
+  serviceNetwork:
+  - 172.30.0.0/16
+platform:
+  vsphere:
+    apiVIPs:
+    - 48.64.210.23
+    failureDomains:
+    - name: generated-failure-domain
+      region: generated-region
+      server: redacted
+      topology:
+        computeCluster: /VxRail-Datacenter/host/VxRail-Virtual-SAN-Cluster
+        datacenter: VxRail-Datacenter
+        datastore: /VxRail-Datacenter/datastore/VxRail-Virtual-SAN-Datastore-28ecbdd0-cab3-4590-9954-dc9db3c337f0
+        networks:
+        - vlan1210-48.64.210.0%2f25-aih-app
+        resourcePool: /VxRail-Datacenter/host/VxRail-Virtual-SAN-Cluster/Resources
+      zone: generated-zone
+    ingressVIPs:
+    - 48.64.210.24
+    hosts:
+    - role: bootstrap
+      networkDevice:
+        ipAddrs:
+        - 48.64.210.25/24
+        gateway: 48.64.210.1
+        nameservers:
+        - 48.64.210.22
+    - role: control-plane
+      networkDevice:
+        ipAddrs:
+        - 48.64.210.26/24
+        gateway: 48.64.210.1
+        nameservers:
+        - 48.64.210.22
+    - role: control-plane
+      networkDevice:
+        ipAddrs:
+        - 48.64.210.27/24
+        gateway: 48.64.210.1
+        nameservers:
+        - 48.64.210.22
+    - role: control-plane
+      networkDevice:
+        ipAddrs:
+        - 48.64.210.28/24
+        gateway: 48.64.210.1
+        nameservers:
+        - 48.64.210.22
+    - role: compute
+      networkDevice:
+        ipAddrs:
+        - 48.64.210.29/24
+        gateway: 48.64.210.1
+        nameservers:
+        - 48.64.210.22
+    - role: compute
+      networkDevice:
+        ipAddrs:
+        - 48.64.210.30/24
+        gateway: 48.64.210.1
+        nameservers:
+        - 48.64.210.22
+    vcenters:
+    - datacenters:
+      - VxRail-Datacenter
+      password: redacted
+      port: 443
+      server: redacted
+      user: redacted
+publish: External
+pullSecret: redacted
+sshKey: |
+  redacted
