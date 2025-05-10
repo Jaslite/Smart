@@ -1,0 +1,108 @@
+apiVersion: v1
+baseDomain: testcluster.local
+metadata:
+  name: kuanyong-ocp
+
+compute:
+- name: worker
+  replicas: 2
+  architecture: amd64
+  hyperthreading: Enabled
+  platform: {}
+
+controlPlane:
+  name: master
+  replicas: 3
+  architecture: amd64
+  hyperthreading: Enabled
+  platform: {}
+
+networking:
+  networkType: OVNKubernetes
+  machineNetwork:
+  - cidr: 48.64.210.0/25
+  clusterNetwork:
+  - cidr: 10.128.0.0/14
+    hostPrefix: 23
+  serviceNetwork:
+  - 172.30.0.0/16
+
+platform:
+  vsphere:
+    vcenters:
+    - server: redacted
+      user: redacted
+      password: redacted
+      datacenters:
+      - VxRail-Datacenter
+      port: 443
+
+    apiVIPs:
+    - 48.64.210.23
+    ingressVIPs:
+    - 48.64.210.24
+
+    failureDomains:
+    - name: generated-failure-domain
+      region: generated-region
+      zone: generated-zone
+      server: redacted
+      topology:
+        datacenter: VxRail-Datacenter
+        computeCluster: /VxRail-Datacenter/host/VxRail-Virtual-SAN-Cluster
+        resourcePool: /VxRail-Datacenter/host/VxRail-Virtual-SAN-Cluster/Resources
+        datastore: /VxRail-Datacenter/datastore/VxRail-Virtual-SAN-Datastore-28ecbdd0-cab3-4590-9954-dc9db3c337f0
+        networks:
+        - vlan1210-48.64.210.0%2f25-aih-app
+
+    hosts:
+    - role: bootstrap
+      networkDevice:
+        ipAddrs:
+        - 48.64.210.25/24
+        gateway: 48.64.210.1
+        nameservers:
+        - 48.64.210.22
+
+    - role: control-plane
+      networkDevice:
+        ipAddrs:
+        - 48.64.210.26/24
+        gateway: 48.64.210.1
+        nameservers:
+        - 48.64.210.22
+    - role: control-plane
+      networkDevice:
+        ipAddrs:
+        - 48.64.210.27/24
+        gateway: 48.64.210.1
+        nameservers:
+        - 48.64.210.22
+    - role: control-plane
+      networkDevice:
+        ipAddrs:
+        - 48.64.210.28/24
+        gateway: 48.64.210.1
+        nameservers:
+        - 48.64.210.22
+
+    - role: compute
+      networkDevice:
+        ipAddrs:
+        - 48.64.210.29/24
+        gateway: 48.64.210.1
+        nameservers:
+        - 48.64.210.22
+    - role: compute
+      networkDevice:
+        ipAddrs:
+        - 48.64.210.30/24
+        gateway: 48.64.210.1
+        nameservers:
+        - 48.64.210.22
+
+additionalTrustBundlePolicy: ProxyOnly  # optional, keep only if using a proxy
+publish: External
+pullSecret: 'redacted'
+sshKey: |
+  ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAr... your-key ... user@hostname
