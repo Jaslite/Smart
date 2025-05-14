@@ -1,7 +1,7 @@
 featureSet: TechPreviewNoUpgrade
 additionalTrustBundlePolicy: Proxyonly
 apiVersion: v1
-baseDomain: testcluster.local
+baseDomain: ite.local
 compute:
 - architecture: amd64
   hyperthreading: Enabled
@@ -16,85 +16,86 @@ controlPlane:
   replicas: 3
 metadata:
   creationTimestamp: null
-  name: kuanyong-ocp
+  name: ite-ocp
 networking:
   clusterNetwork:
   - cidr: 10.128.0.0/14
     hostPrefix: 23
   machineNetwork:
-  - cidr: 48.64.210.0/25
+  - cidr: 10.10.15.0/24
   networkType: OVNKubernetes
   serviceNetwork:
   - 172.30.0.0/16
 platform:
   vsphere:
     apiVIPs:
-    - 48.64.210.23
+    - 10.10.15.122
     failureDomains:
     - name: generated-failure-domain
       region: generated-region
-      server: redacted
+      server: vcsa01.seit.local
       topology:
         computeCluster: /VxRail-Datacenter/host/VxRail-Virtual-SAN-Cluster
         datacenter: VxRail-Datacenter
-        datastore: /VxRail-Datacenter/datastore/VxRail-Virtual-SAN-Datastore-28ecbdd0-cab3-4590-9954-dc9db3c337f0
+        datastore: /VxRail-Datacenter/datastore/VxRail-Virtual-SAN-Datastore
         networks:
-        - vlan1210-48.64.210.0%2f25-aih-app
+        - INT_VDI-VLAN15
         resourcePool: /VxRail-Datacenter/host/VxRail-Virtual-SAN-Cluster/Resources
       zone: generated-zone
     ingressVIPs:
-    - 48.64.210.24
+    - 10.10.15.123
     hosts:
     - role: bootstrap
       networkDevice:
         ipAddrs:
-        - 48.64.210.25/24
-        gateway: 48.64.210.1
+        - 10.10.15.115/24
+        gateway: 10.10.15.1
         nameservers:
-        - 48.64.210.22
+        - 10.10.15.112
     - role: control-plane
       networkDevice:
         ipAddrs:
-        - 48.64.210.26/24
-        gateway: 48.64.210.1
+        - 10.10.15.116/24
+        gateway: 10.10.15.1
         nameservers:
-        - 48.64.210.22
+        - 10.10.15.112
     - role: control-plane
       networkDevice:
         ipAddrs:
-        - 48.64.210.27/24
-        gateway: 48.64.210.1
+        - 10.10.15.117/24
+        gateway: 10.10.15.1
         nameservers:
-        - 48.64.210.22
+        - 10.10.15.112
     - role: control-plane
       networkDevice:
         ipAddrs:
-        - 48.64.210.28/24
-        gateway: 48.64.210.1
+        - 10.10.15.118/24
+        gateway: 10.10.15.1
         nameservers:
-        - 48.64.210.22
+        - 10.10.15.112
     - role: compute
       networkDevice:
         ipAddrs:
-        - 48.64.210.29/24
-        gateway: 48.64.210.1
+        - 10.10.15.119/24
+        gateway: 10.10.15.1
         nameservers:
-        - 48.64.210.22
+        - 10.10.15.112
     - role: compute
       networkDevice:
         ipAddrs:
-        - 48.64.210.30/24
-        gateway: 48.64.210.1
+        - 10.10.15.120/24
+        gateway: 10.10.15.1
         nameservers:
-        - 48.64.210.22
+        - 10.10.15.112
     vcenters:
     - datacenters:
       - VxRail-Datacenter
-      password: redacted
+      password: Redact
       port: 443
-      server: redacted
-      user: redacted
+      server: vcsa01.seit.local
+      user: administrator@vsphere.local
 publish: External
-pullSecret: redacted
+pullSecret: Redact
 sshKey: |
-  redacted
+  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCagVQ4lGASKgqZ926Ux2oSI8ZhqJZLCT/yQDxxGCwnvZj4SaojspcvSyi/Bq+LTnYX7jx4DKIpbGukXOehffLPSXVpn02ip3CLxolQYtlGZBlEyLsbGjxmuMe6+fmVgGTxd2p4LK2KWNDPmNW8AuxhZUw5y2P7eWl4jWZKWLqNfDNoTgWbDOM4O69kbctwtAyQKDWpW2O12icNyuBDPVZsjaQYQOKyTz5B/CvC/sc46Fuhm5O/mohujE2SVdialbbzIDc0/qvFctDxqqpoO0SMlf3aw3aPZnirlqLGoqRvG8yglfg4b/Te7LWnhrewvHWj2qRJAl3vZST75IVEBPXA1kFZSoD2t46Nx6FnnlC86Tjy315drMY40jc/0u+ZgChs4KoLFpEqYdkcftiVaRI3cqj3RxIMwrrExDTd3qWMKTJS1E9SCL2+v4lz5TYrsm4MQb2QXKkN4lRHxe6xQZhllJjwCiRoTRsGZGu+XZeSRypLagqIM9a+1AtrwNrj9APNk4bYPLLIICNjusXsKdsiCuQegPzKC80n0TAeZJyuCqmggNhvrqsToru82nYaQDyVzS76W50ZPBj8KE3snN9NtaUI1ikGe34gkv8IlgIpTf16e++YFXky/rf/4zcyLMhSzUQAYwYarFZbS3Kx78uVaDOb5C0SKq7IOadYrybU7Q== isngpu01@seit.local@debian01.seit.local
+
