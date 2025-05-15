@@ -1,0 +1,36 @@
+---
+
+- name: Configure OSPF for iosex1
+  hosts: itecc
+  gather_facts: true
+  tasks:
+      - name: Configure OSPF iosex1
+        cisco.ios.ios_ospfv2:
+          config:
+              processes:
+              - process_id: 1
+                network:
+                - address: 10.10.10.0
+                  area: 0
+                  wildcard_bits: 0.0.0.3
+                - address: 172.168.10.0
+                  area: 0
+                  wildcard_bits: 0.0.0.255
+          state: merged
+
+- name: Configure OSPF for iosex2
+  hosts: itecw
+  tasks:
+      - name: Configure OSPF iosex2
+        cisco.ios.ios_ospfv2:
+          config:
+            processes:
+            - process_id: 1
+              network:
+               - address: 10.10.10.0
+                 area: 0
+                 wildcard_bits: 0.0.0.3
+               - address: 172.169.10.0
+                 area: 0
+                 wildcard_bits: 0.0.0.255
+          state: merged
