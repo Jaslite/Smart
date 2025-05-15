@@ -1,0 +1,36 @@
+---
+- name: Configure OSPF
+	  hosts: iosxe1.lab.example.com
+	  gather_facts: false
+	  tasks:
+	    - name: Configure OSPF
+		cisco.ios.ios_ospfv2:
+        	  config:
+	          processes:
+            	- process_id: 1
+              	  network:
+	                - address: 10.10.10.0
+      	            wildcard_bits: 0.0.0.3
+            	      area: 0
+                	    - address: 72.168.10.0
+	                  wildcard_bits: 0.0.0.255
+      	            area: 0
+		   state: merged
+
+- name: Configure OSPF
+	  hosts: iosxe2.lab.example.com
+	  gather_facts: false
+	  tasks:
+	    - name: Configure OSPF
+		cisco.ios.ios_ospfv2:
+        	  config:
+	          processes:
+            	- process_id: 1
+              	  network:
+	                - address: 10.10.10.0
+      	            wildcard_bits: 0.0.0.3
+            	      area: 0
+                	    - address: 72.169.10.0
+	                  wildcard_bits: 0.0.0.255
+      	            area: 0
+		   state: merged

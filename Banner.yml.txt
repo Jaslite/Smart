@@ -1,0 +1,16 @@
+---
+- name: Configure a banner on IOS devices
+  hosts: ios
+  gather_facts: false
+  tasks:
+    - name: Configure a MOTD banner
+      cisco.ios.ios_banner:
+        banner: motd
+        text: This is an SEIT managed node
+        state: present
+      notify: ios_save_changes
+
+  handlers:
+    - name: ios_save_changes
+      cisco.ios.ios_config:
+        save_when: always
